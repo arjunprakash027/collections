@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>HTML Forms</h2>
+
+<form action="" method="post" class="form-horizontal">
+    {% csrf_token%}
+  <label for="fname">First name:</label><br>
+  <input type="text" id="name" name="name" value=""><br>
+  <label for="age">age:</label><br>
+  <input type="number" id="age" name="age" value="age"><br><br>
+  <input type="submit" value="Submit">
+</form> 
+
+<p>your name and age will be stored in the database,<br>thank you.</p>
+
+<a href="/see">
+  view data
+</a>
+
+</body>
+</html>
