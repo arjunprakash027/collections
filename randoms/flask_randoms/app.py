@@ -4,8 +4,8 @@ app = Flask(__name__)
 
 @app.route('/api')
 def my_api():
-
-    return "thank you for sending me: " + request.args.get('variable') + "!"
+    processed = int(request.args.get('variable')) + 25
+    return "thank you for sending me: " + str(request.args.get("another_variable")) + "!"
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug = True)

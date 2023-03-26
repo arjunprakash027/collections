@@ -5,6 +5,7 @@
 from math import asin,cos,radians,sin,sqrt
 import requests
 import urllib.parse
+import sys
 
 radi = 6371
 
@@ -19,6 +20,7 @@ def getaddr(address):
     return response[0]["lat"],response[0]["lon"]
 
 if __name__ == '__main__':
-    x = getaddr(a:=input("Enter the start: "))
-    y = getaddr(b:=input("Enter the destination: "))
+
+    x = getaddr(a:=sys.argv[1])
+    y = getaddr(b:=sys.argv[2])
     print("distance from {} to {} is {} km".format(a,b,distance(x[0],x[1],y[0],y[1])))
