@@ -1,0 +1,7 @@
+version: '3'
+services:
+  rust:
+    image: rust:latest
+    volumes:
+      - .:/media
+    working_dir: /media
