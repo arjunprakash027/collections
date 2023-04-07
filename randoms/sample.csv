@@ -1,0 +1,4 @@
+name,age,married,divorced,children,pets,cars
+John,30,True,False,"['Ann', 'Billy']",,"[{'model': 'BMW 230', 'mpg': 27.5}, {'model': 'Ford Edge', 'mpg': 24.1}]"
+rajesh,30,True,False,"['kumaresh', 'murugesh']",,"[{'model': 'BMW 230', 'mpg': 27.5}, {'model': 'Ford Edge', 'mpg': 24.1}]"
+kumaresh,30,True,False,"('kumaresh', 'murugesh')",,"[{'model': 'BMW 230', 'mpg': 27.5}, {'model': 'Ford Edge', 'mpg': 24.1}]"
