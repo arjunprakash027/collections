@@ -1,7 +1,6 @@
 import telebot
-import openai
 import yfinance as yf
-BOT_TOKEN = "your bot token"
+BOT_TOKEN = "6139707035:AAFbNU2jZMQFtkfNF1mGhz6QufsBIVFhrg4"
 
 bot = telebot.TeleBot(BOT_TOKEN)
 
