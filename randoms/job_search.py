@@ -1,5 +1,5 @@
 #a trial of bs4 from tech with tim tutorial: https://youtu.be/gRLHr664tXA
-
+from wraps import *
 from bs4 import BeautifulSoup as bs
 import requests
 
@@ -25,6 +25,7 @@ def advanced_jobsearch_simplyhired():
         qualifications = doc_internal.find_all("ul", class_="Chips")
         print(qualifications[0].text.split())
 
+@findtime
 def advanced_jobsearch_google():
     #position = str(input("Position:"))
     #location = str(input("Location:"))
