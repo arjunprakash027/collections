@@ -1,0 +1,6 @@
+kumar	33	aids
+nitish	33	aids
+naveen	34	aids
+naresh	30	aids
+sushmeetha	21	aids
+arjun	25	aids
