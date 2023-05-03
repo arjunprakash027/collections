@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
+from .models import Image
 
 def signup(request):
     if request.method == "POST":
@@ -26,7 +27,7 @@ def login_user(request):
         if user is not None:
             messages.success(request,"login successfull :)")
             login(request,user)
-            return redirect('login')
+            return redirect('index')
         else:
             messages.error(request,"invalid credentials :(")
             return redirect('login')
@@ -40,6 +41,16 @@ def onlyloggedin(request):
         return render(request,'onlyloggedin.html')
     else:
         messages.error(request,"please login to continue :(")
+        return redirect('login')
+
+def index(request):
+    if request.user.is_authenticated:
+        data = Image.objects.filter(user=request.user.id)
+        context = {
+            'data':data
+        }
+        return render(request,"display.html",context)
+    else:
         return redirect('login')
     
 def logout_user(request):
