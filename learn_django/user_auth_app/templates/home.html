@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Arjun Cloud</title>
+    <style>
+      /* General styles */
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-color: #f1f1f1;
+      }
+
+      /* Navigation bar styles */
+      nav {
+        background-color: #333;
+        color: #fff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+      }
+
+      nav a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+        padding: 5px;
+      }
+
+      /* Banner styles */
+      .banner {
+        background-image: url("https://picsum.photos/1200/300");
+        background-size: cover;
+        height: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: #fff;
+      }
+
+      .banner h1 {
+        font-size: 48px;
+        margin: 0;
+      }
+
+      .banner p {
+        font-size: 24px;
+        margin: 20px 0;
+      }
+
+      /* Main content styles */
+      .content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        padding: 20px;
+      }
+
+      .card {
+        background-color: #fff;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        margin: 10px;
+        overflow: hidden;
+        width: calc(33.33% - 20px);
+      }
+
+      .card img {
+        height: 200px;
+        object-fit: cover;
+        width: 100%;
+      }
+
+      .card h2 {
+        font-size: 24px;
+        margin: 10px;
+      }
+
+      .card p {
+        font-size: 16px;
+        margin: 10px;
+      }
+
+      .card button {
+        background-color: #4CAF50;
+        border: none;
+        border-radius: 5px;
+        color: #fff;
+        cursor: pointer;
+        font-size: 16px;
+        margin: 10px;
+        padding: 10px;
+      }
+
+      .card button:hover {
+        background-color: #3e8e41;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation bar -->
+    <nav>
+      <h1>Arjun Cloud</h1>
+      <div>
+        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'signup' %}">Signup</a>
+      </div>
+    </nav>
+
+    <!-- Banner -->
+    <div class="banner">
+      <div>
+        <h1>Welcome to Arjun Cloud</h1>
+        <p>The easiest way to store and share your files online</p>
+      </div>
+    </div>
+
+    <!-- Main content -->
+    <div class="content">
+      <div class="card">
+        <img src="https://picsum.photos/300/200" alt="Card image">
+        <h2>Secure storage</h2>
+        <p>Your files are encrypted and stored securely on our servers, so you can access them from anywhere with an internet connection.</p>
+     

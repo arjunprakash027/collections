@@ -4,6 +4,10 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from .models import Image
 
+
+def home(request):
+    return render (request,'home.html')
+
 def signup(request):
     if request.method == "POST":
         username = request.POST['email']
@@ -27,6 +31,7 @@ def login_user(request):
         if user is not None:
             messages.success(request,"login successfull :)")
             login(request,user)
+            print("logged in")
             return redirect('index')
         else:
             messages.error(request,"invalid credentials :(")
@@ -47,7 +52,8 @@ def index(request):
     if request.user.is_authenticated:
         data = Image.objects.filter(user=request.user.id)
         context = {
-            'data':data
+            'data':data,
+            'username':request.user.username[:-10]
         }
         return render(request,"display.html",context)
     else:
