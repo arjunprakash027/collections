@@ -13,6 +13,7 @@
     - [eventlogger.py](https://github.com/arjunprakash027/collections/blob/main/randoms/eventlogger.py)
     - [exeption_handling](https://github.com/arjunprakash027/collections/blob/main/randoms/exeptionhandling_python.py)
     - [randoms.ipynb](https://github.com/arjunprakash027/collections/blob/main/randoms/python_randoms.ipynb)
+    - [Neural Networks](https://github.com/arjunprakash027/collections/tree/main/randoms/neural_networks)
 
 - [tutorials](https://github.com/arjunprakash027/collections/tree/main/tutorials)
     - [Ai_industry_course](https://github.com/arjunprakash027/collections/tree/main/tutorials/AI_industry%20course)
