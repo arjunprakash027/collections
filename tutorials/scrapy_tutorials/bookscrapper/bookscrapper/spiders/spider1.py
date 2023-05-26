@@ -73,10 +73,10 @@ class Spider3Spider(scrapy.Spider):
     allowed_domains = ["books.toscrape.com"] #when crawling multiple domains, it lists domains only we want to scrap
     start_urls = ["http://books.toscrape.com/"]
 
-    custom_settings = {
-        'FEED_FORMAT' : 'json',
-        'FEED_URI' : 'out.json'
-    }
+    # custom_settings = {
+    #     'FEED_FORMAT' : 'json',
+    #     'FEED_URI' : 'out.json'
+    # }
 
     def parse(self, response): # diffent peice of information we need to get extracted
         books = response.css('article.product_pod')

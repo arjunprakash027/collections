@@ -12,10 +12,13 @@ class BookscrapperPipeline:
 
     def process_item(self, item, spider):
 
+        print("pipeline item ____________>",item)
         adapter = ItemAdapter(item)
+        print("pipeline adapter ____________>",adapter)
 
         #strips all the whitespaces from everything excpet description
         field_names = adapter.field_names()
+        print("field names ____________>",field_names)
         for field_name in field_names:
             if field_name != 'description':
                 value = adapter.get(field_name)
@@ -45,6 +48,52 @@ class BookscrapperPipeline:
             adapter['aviliblity'] = int(avi_array[0])
         
 
-    
-
         return item
+
+import mysql.connector
+class Savetomysqlpipeline:
+    
+    def __init__(self):
+        self.conn = mysql.connector.connect(
+            host = 'localhost',
+            user = 'root',
+            password = 'password',
+            database = 'books',
+            port  = 5000
+        )
+        self.curr = self.conn.cursor()
+
+        self.curr.execute(""" 
+        CREATE TABLE if not exists books (
+            id int not null auto_increment,
+            url varchar(255),
+            title TEXT,
+            price DECIMAL,
+            type varchar(255),
+            aviliblity int,
+            rating varchar(255),
+            category varchar(255),
+            description TEXT,
+            primary key (id));
+            """)
+
+    def process_item(self, item, spider):
+        print("this is the item:::::",item)
+
+        self.curr.execute("""insert into books(url,title,price,type,aviliblity,rating,category,description) values(%s,%s,%s,%s,%s,%s,%s,%s)""",(
+            item['url'],
+            item['title'],
+            item['price'],
+            item['type'],
+            item['aviliblity'],
+            item['rating'],
+            item['category'],
+            item['description']
+        ))
+        self.conn.commit()
+        return item
+    
+    def close_spider(self,spider):
+
+        self.curr.close()
+        self.conn.close()
