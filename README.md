@@ -4,7 +4,7 @@
     - [IIT_datastructures](https://github.com/arjunprakash027/collections/tree/main/DSA/IIT_datastructures)
 
 - [Mini Projects]
-    - [ChatApp using Flask and React](https://github.com/arjunprakash027/collections/tree/main/randoms/flask_socketio)
+    - [ChatApp using Flask and React](https://github.com/arjunprakash027/collections/tree/main/randoms/flask_socketio/react-flask)
     
 - [randoms](https://github.com/arjunprakash027/collections/tree/main/randoms)
     - [class](https://github.com/arjunprakash027/collections/tree/main/randoms/complex_class_try)
