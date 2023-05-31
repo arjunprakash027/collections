@@ -73,10 +73,10 @@ class Spider3Spider(scrapy.Spider):
     allowed_domains = ["books.toscrape.com"] #when crawling multiple domains, it lists domains only we want to scrap
     start_urls = ["http://books.toscrape.com/"]
 
-    custom_settings = {
-        'FEED_FORMAT' : 'json',
-        'FEED_URI' : 'out.json'
-    }
+    # custom_settings = {
+    #     'FEED_FORMAT' : 'json',
+    #     'FEED_URI' : 'out.json'
+    # }
 
     def parse(self, response): # diffent peice of information we need to get extracted
         books = response.css('article.product_pod')
@@ -113,4 +113,4 @@ class Spider3Spider(scrapy.Spider):
         book_item['category'] = response.xpath("//ul[@class='breadcrumb']/li[@class='active']/preceding-sibling::li[1]/a/text()").get(),
         book_item['description'] = response.xpath("//div[@id='product_description']/following-sibling::p/text()").get()
         
-        yield book_item
+        yield book_item # this final yeild that gives the dataitem is used in pipeline. 

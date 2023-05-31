@@ -18,6 +18,13 @@ async def handler(websocket):
         message = await websocket.recv()
         print(message)
 
+        for user in regestered_users.values():
+            try:
+                await user.send(message)
+            except:
+                print("error for {}".format(user))
+
+
         #print(websocket)
 
         # for user in regestered_users.values():
@@ -38,14 +45,10 @@ async def handler(websocket):
 #         except:
 #             print("error for {}".format(user))
 
-    
-
-clients = []
 
 async def main():
     server1 = websockets.serve(handler, "", 8000)
     # server2 = websockets.serve(reg_handler, "", 8000)
-
     await asyncio.gather(server1)
 
 if __name__ == '__main__':
