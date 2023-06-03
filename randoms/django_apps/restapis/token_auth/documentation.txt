@@ -1,0 +1,6 @@
+Download djangorestframework
+
+step1 : Views.py create our new view and Isautneticated permission.
+step2 : declare urls and set it in urls in main project.
+step3 : All necessary apps and auth in settings.py and create rest_settings in settings.py
+
