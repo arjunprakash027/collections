@@ -3,6 +3,8 @@ import './App.css';
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { googleLogout,useGoogleLogin } from '@react-oauth/google';
+import Navbar from './components/navigation_bar';
+import UserPage from './components/UserPage';
 import axios from 'axios';
 
 function App() {
@@ -16,9 +18,9 @@ function App() {
     onError: (error) => console.log('login failed:',error)
   });
 
-  if (user){
-  console.log(user['access_token']);
-  }
+  // if (user){
+  // console.log(user);
+  // }
   
   useEffect(() => {
     if (user) {
@@ -29,12 +31,34 @@ function App() {
           }
         })
         .then((response) => {
+          console.log("changes");
           setProfile(response['data']);
         }, (error) => {
           console.log(error);
         });
-    }
+  }
   }, [user]);
+
+  useEffect(() => {
+    if (profile ==  null){
+      console.log("profile null");
+    }
+    else{
+    console.log("sending data to django");
+
+    const ProfileData = {
+      name: profile['name'],
+      email: profile['email'],
+      username: profile['id']
+    };
+    console.log(ProfileData);
+    axios.post('http://127.0.0.1:8000/api/auth/register/', ProfileData)
+    .then((response) => {
+      console.log(response['data']);
+    });
+    }
+  }, [profile]);
+
 
   const logout = () => {
     googleLogout();
@@ -42,26 +66,25 @@ function App() {
   };
 
   if (profile){
+    console.log("profile present");
     console.log(profile);
   }
 
   
   return (
     <div>
-      <h2> Google login </h2>
-      <br />
-      <br />
       {profile ? (
         <div>
-          <img src={profile['picture']} alt={profile['name']} />
-          <h2>Welcome {profile['name']}!</h2>
-          <h3>Mail ID : {profile['email']}</h3>
-          <br />
-          <br />
-          <button onClick={()=>logout()}>Logout</button>
+        <Navbar profile={profile} logout={logout} />
+        <UserPage profile={profile} />
         </div>
       ) : (
+        <div>
+        <h2> Google login </h2>
+        <br />
+        <br />
         <button onClick={()=>login()}>Sign in with google </button>
+        </div>
       )}
     </div>
   );
