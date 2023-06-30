@@ -50,7 +50,7 @@ class BookscrapperPipeline:
 
         return item
 
-import mysql.connector
+#import mysql.connector
 class Savetomysqlpipeline:
     
     def __init__(self):

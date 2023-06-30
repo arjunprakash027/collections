@@ -1,6 +1,6 @@
 import scrapy
 from bookscrapper.items import BookItem
-
+import random
 
 class Spider1Spider(scrapy.Spider):
     name = "bookspider"
@@ -77,6 +77,13 @@ class Spider3Spider(scrapy.Spider):
     #     'FEED_FORMAT' : 'json',
     #     'FEED_URI' : 'out.json'
     # }
+
+    # user_agent_list = [
+    #     'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Ubuntu Chromium/83.0.4103.61 Chrome/83.0.4103.61 Safari/537.36',
+    #     'Mozilla/5.0 (X11; Linux i686; rv:77.0) Gecko/20100101 Firefox/77.0',
+    #     'Mozila/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322)',
+    #     'Mozilla5.0 (Windows NT 6.1; WOW64; rv:54.0) Gecko/20100101 Firefox/77.0',
+    # ]
 
     def parse(self, response): # diffent peice of information we need to get extracted
         books = response.css('article.product_pod')
