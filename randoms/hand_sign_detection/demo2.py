@@ -5,8 +5,6 @@ import numpy as np
 from math import hypot
 
 wcam, hcam = 640,480
-frame = 100
-smooth = 1
 plocX, plocY = 0,0  #previous location of x & y
 clocX, clocY = 0,0  #current location of x & y
 #these codes are imported from the cvzone handtracking module from cvzone.HandTrackingModule import HandDetector
@@ -226,12 +224,14 @@ def main(pTime):
         h = float(pixel * 0.02645)
         #print(h)
         #res = focal(h,distance,H)
-        #print(res)
+        #print(res)q
 
         #detect fingers
         if hands:
             hand = hands[0]
+            #print(hand)
             fingers = detector.fingersUp(hand)
+            print(fingers)
 
         #detect and calculate FPS
         cTime = time.time()
