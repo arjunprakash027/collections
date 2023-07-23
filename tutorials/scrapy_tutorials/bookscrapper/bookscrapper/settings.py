@@ -7,6 +7,7 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
+
 BOT_NAME = "bookscrapper"
 
 SPIDER_MODULES = ["bookscrapper.spiders"]
@@ -56,6 +57,9 @@ ROBOTSTXT_OBEY = False
 DOWNLOADER_MIDDLEWARES = {
 #    "bookscrapper.middlewares.BookscrapperDownloaderMiddleware": 543,
      "bookscrapper.middlewares.ScrapopsFakeUserAgentMiddleware": 400,
+     "scrapeops_scrapy_proxy_sdk.scrapeops_scrapy_proxy_sdk.ScrapeopsScrapyProxySdk": 725,
+    #  "rotating_proxies.middlewares.RotatingProxyMiddleware": 610,
+    #  "rotating_proxies.middlewares.BanDetectionMiddleware": 620,
 }
 
 # Enable or disable extensions
@@ -105,3 +109,12 @@ SCRAPEOPS_FAKE_USER_AGENT_ENDPOINT = 'https://headers.scrapeops.io/v1/browser-he
 SCRAPEOPS_FAKE_USER_AGENT = True
 SCRAPEOPS_NUM_RESULTS = 50
 
+ROTATING_PROXY_LIST = [
+    '184.10.84.74:80',
+    '50.218.57.70:80',
+    '41.230.216.70:80',
+    '20.204.212.45:3129',
+]
+
+SCRAPEOPS_API_KEY = 'eb3c4ff0-73ff-4157-8a39-ec634d8a3a9f'
+SCRAPEOPS_PROXY_ENABLED = True

@@ -113,6 +113,7 @@ class HandDetector:
         """
         myHandType = myHand["type"]
         myLmList = myHand["lmList"]
+        #print(myLmList)
         if self.results.multi_hand_landmarks:
             fingers = []
             # Thumb
@@ -163,11 +164,6 @@ class HandDetector:
  
         return self.lmList, bbox
 
-
-#average FPS  = 35.93436293436294
-#average FPS when detecting hands  = 19.258928571428573
-#approximatley 16 FPS drops when hand detection is called
-
 detector = HandDetector(detectionCon=0.8, maxHands=2)
 
 avgfps = []
@@ -187,6 +183,22 @@ the pixel value to cm by multiplying with `0.02645(constant)'''
 
 #dei..distance config width vechi paniruka..change that to height again configure pannu
 #find_hands la height nu return panadhu width..20/12/22 changed return value of height to height
+
+def orders(fingers):
+    if fingers == [0,0,0,0,0]:
+        return "cheese burger"
+    elif fingers == [1,0,0,0,0]:
+        return "dosa"
+    elif fingers == [1,1,0,0,0]:
+        return "chapthi"
+    elif fingers == [1,1,1,0,0]:
+        return "parota"
+    elif fingers == [1,1,1,1,0]:
+        return "chhicken"
+    elif fingers == [1,1,1,1,1]:
+        return "fish"
+    else:
+        return "nothing"
 
 distance = 50
 H = 4.62875
@@ -212,8 +224,6 @@ distance calculated will be false. Hence need to try another method by calculati
 the distance of the 2 points in hand detection from pinky finger to index finger'''
 
 def main(pTime):
-    plocX, plocY = 0,0
-    clocX, clocY = 0,0
 
     while True:
         success, img = cap.read()
@@ -232,6 +242,11 @@ def main(pTime):
             #print(hand)
             fingers = detector.fingersUp(hand)
             print(fingers)
+        
+        try:
+            cv2.putText(img,orders(fingers),(250,30),cv2.FONT_HERSHEY_DUPLEX,1, (0,0,128), 2)
+        except:
+            pass
 
         #detect and calculate FPS
         cTime = time.time()
@@ -241,7 +256,6 @@ def main(pTime):
         #display FPS
         cv2.putText(img, f"FPS : {fps}",(10,25),cv2.FONT_HERSHEY_SIMPLEX,1,(0,255,0),2)
         cv2.putText(img,f"{distance_find(f, H, h)} cm", dbox, cv2.FONT_HERSHEY_PLAIN, 2, (255, 255, 0), 2)
-        cv2.putText(img,"GCC 2.0",(250,30),cv2.FONT_HERSHEY_DUPLEX,1, (0,0,128), 2)
         cv2.imshow("test",img)
         if cv2.waitKey(1) == ord('q'):
             break

@@ -1,6 +1,12 @@
 import scrapy
 from bookscrapper.items import BookItem
 import random
+from urllib.parse import urlencode
+
+# def get_proxy_url(url):
+#     payload = {'api_key':'eb3c4ff0-73ff-4157-8a39-ec634d8a3a9f','url':url}
+#     proxy_url = 'https://proxy.scrapeops.io/v1/?'+urlencode(payload)
+#     return proxy_url 
 
 class Spider1Spider(scrapy.Spider):
     name = "bookspider"
@@ -23,7 +29,7 @@ class Spider1Spider(scrapy.Spider):
             if 'catalogue/' in next_page:
                 next_page_url = self.start_urls[0] + next_page
             else:
-                next_page_url = self.start_urls[0] + "catalogue/" + next_page
+                next_page_urlf = self.start_urls[0] + "catalogue/" + next_page
             yield response.follow(next_page_url, callback = self.parse)
 
 
@@ -53,7 +59,7 @@ class Spider2Spider(scrapy.Spider):
             else:
                 next_page_url = 'http://books.toscrape.com/' + "catalogue/" + next_page
             yield response.follow(next_page_url, callback = self.parse)
-    
+     
     def parse_book_page(self,response):
         table_rows = response.css("table tr")
 
@@ -73,6 +79,9 @@ class Spider3Spider(scrapy.Spider):
     allowed_domains = ["books.toscrape.com"] #when crawling multiple domains, it lists domains only we want to scrap
     start_urls = ["http://books.toscrape.com/"]
 
+    # def start_requests(self):
+    #     yield scrapy.Request(url=get_proxy_url(self.start_urls[0]), callback=self.parse)
+    
     # custom_settings = {
     #     'FEED_FORMAT' : 'json',
     #     'FEED_URI' : 'out.json'
@@ -96,7 +105,7 @@ class Spider3Spider(scrapy.Spider):
             else:
                 book_details_url = self.start_urls[0] + "catalogue/" + book_details
 
-            yield response.follow(book_details_url, callback=self.parse_book_page)
+            yield response.follow(url = book_details_url, callback=self.parse_book_page)
         
         next_page = response.css('li.next a::attr(href)').get() #get the next button link in the end of the page to navigate to the next page
 
@@ -105,7 +114,7 @@ class Spider3Spider(scrapy.Spider):
                 next_page_url = 'http://books.toscrape.com/' + next_page
             else:
                 next_page_url = 'http://books.toscrape.com/' + "catalogue/" + next_page
-            yield response.follow(next_page_url, callback = self.parse)
+            yield response.follow(url = next_page_url, callback = self.parse)
     
     def parse_book_page(self,response):
         table_rows = response.css("table tr")
